@@ -37,10 +37,17 @@ public class MockMischiDeviceMock extends MockAbsService{
 
     @Override
     public void sendMessage(VirtualDevice virtualDevice, IotMsg iotMsg) {
-        virtualDevice.update().set("ACCE", iotMsg.getAcce())
+        virtualDevice.update()
                 .set("TEMP", iotMsg.getTemp())
-                .set("RMS", iotMsg.getRms())
-                .set("MOTION", iotMsg.getMotion())
+                .set("ACCE_X", iotMsg.getAcce_x())
+                .set("ACCE_Y", iotMsg.getAcce_y())
+                .set("ACCE_Z", iotMsg.getAcce_z())
+                .set("RMS_X", iotMsg.getRms_x())
+                .set("RMS_Y", iotMsg.getRms_y())
+                .set("RMS_Z", iotMsg.getRms_z())
+                .set("MOTION_X", iotMsg.getRms_x())
+                .set("MOTION_X", iotMsg.getRms_y())
+                .set("MOTION_X", iotMsg.getRms_z())
                 .set("CREATETIME", new Date())
                 .finish();
     }
