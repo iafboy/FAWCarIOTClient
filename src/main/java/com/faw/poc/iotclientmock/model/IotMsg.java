@@ -1,6 +1,7 @@
 package com.faw.poc.iotclientmock.model;
 
 public class IotMsg {
+    private String uuid;
     private Double temp;
     private Double acce_x;
     private Double rms_x;
@@ -11,6 +12,14 @@ public class IotMsg {
     private Double acce_z;
     private Double rms_z;
     private Double motion_z;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public Double getTemp() {
         return temp;
@@ -95,7 +104,8 @@ public class IotMsg {
     @Override
     public String toString() {
         return "IotMsg{" +
-                "temp=" + temp +
+                "uuid='" + uuid + '\'' +
+                ", temp=" + temp +
                 ", acce_x=" + acce_x +
                 ", rms_x=" + rms_x +
                 ", motion_x=" + motion_x +

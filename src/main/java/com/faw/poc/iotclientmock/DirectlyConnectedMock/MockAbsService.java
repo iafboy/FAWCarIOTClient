@@ -2,6 +2,7 @@ package com.faw.poc.iotclientmock.DirectlyConnectedMock;
 
 import com.faw.poc.iotclientmock.model.IotMsg;
 import oracle.iot.client.DeviceModel;
+import oracle.iot.client.StorageObject;
 import oracle.iot.client.device.DirectlyConnectedDevice;
 import oracle.iot.client.device.VirtualDevice;
 import org.slf4j.Logger;
@@ -15,6 +16,8 @@ import java.util.List;
 
 @Component
 public abstract class MockAbsService {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     protected void handleWork(String remote_host_name, IotMsg iotMsg, String URN, String activation_ID, String file_Protection_Password) throws Exception {
         HttpsURLConnection.setDefaultHostnameVerifier((hostname, session) -> hostname.equals(remote_host_name));
 
@@ -44,8 +47,17 @@ public abstract class MockAbsService {
         } catch (Exception e) {
             throw e;
         }
-
-
+    }
+    public boolean uploadDataToSCS(DirectlyConnectedDevice directlyConnectedDevice,VirtualDevice virtualDevice, Object objs){
+        try {
+            StorageObject storageObject = directlyConnectedDevice.createStorageObject("mediaSnapshot.jpg", "image/jpg");
+            storageObject.setInputPath("../images/mediaSnapshot.jpg");
+            virtualDevice.set("snapshot", storageObject);
+            return true;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+        }
+        return false;
     }
 
     public abstract void sendMessage(VirtualDevice virtualDevice, IotMsg iotMsg);

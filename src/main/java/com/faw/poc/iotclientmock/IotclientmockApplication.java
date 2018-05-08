@@ -44,6 +44,8 @@ public class IotclientmockApplication implements CommandLineRunner {
     private String urn_dev2;
 
     public static void main(String[] args) {
+        System.setProperty("com.oracle.iot.client.disable_long_polling","false");
+
         SpringApplication.run(IotclientmockApplication.class, args);
     }
 
